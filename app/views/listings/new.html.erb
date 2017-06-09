@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @listing.errors.any? %>
+  <% @listing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Listing</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_listing" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for class_code -->
+      <div class="form-group">
+        <label for="class_code" class="control-label">
+          Class code
+        </label>
+
+        <input type="text" id="class_code" name="class_code" placeholder="Class code" class="form-control" value="<%= @listing.class_code %>">
+      </div>
+
+      <!-- Label and input for class_name -->
+      <div class="form-group">
+        <label for="class_name" class="control-label">
+          Class name
+        </label>
+
+        <input type="text" id="class_name" name="class_name" placeholder="Class name" class="form-control" value="<%= @listing.class_name %>">
+      </div>
+
+      <!-- Label and input for book_title -->
+      <div class="form-group">
+        <label for="book_title" class="control-label">
+          Book title
+        </label>
+
+        <input type="text" id="book_title" name="book_title" placeholder="Book title" class="form-control" value="<%= @listing.book_title %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @listing.user_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Listing
+      </button>
+      or
+      <a href="/listings">Cancel</a>
+    </form>
+  </div>
+</div>
